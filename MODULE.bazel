@@ -1,0 +1,13 @@
+bazel_dep(name = "rules_cc", version = "0.0.17")
+bazel_dep(name = "abseil-cpp", version = "20250814.1")
+
+# Hedron's Compile Commands Extractor for Bazel
+# https://github.com/hedronvision/bazel-compile-commands-extractor
+# Tl;dr: We use this so we can use absl libraries in C++ files and not have Intellisense yell at us because it doesn't know what's going on. Whenever you add a new absl dependency, run the following command:
+# `bazel run @hedron_compile_commands//:refresh_all`
+bazel_dep(name = "hedron_compile_commands", dev_dependency = True)
+git_override(
+    module_name = "hedron_compile_commands",
+    commit = "e49f0cd201931f2a3137814a66a0d2e30b45cda1",
+    remote = "https://github.com/eduardvercaemer/bazel-compile-commands-extractor.git",
+)
