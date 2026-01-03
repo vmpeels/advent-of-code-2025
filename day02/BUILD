@@ -6,7 +6,10 @@ cc_binary(
     data = [
         "sample.txt",
     ],
-    deps = ["@abseil-cpp//absl/container:flat_hash_set"],
+    deps = [
+        "//common",
+        "@abseil-cpp//absl/container:flat_hash_set",
+    ],
 )
 
 cc_binary(
@@ -15,5 +18,8 @@ cc_binary(
     data = [
         "actual.txt",
     ],
-    deps = ["@abseil-cpp//absl/container:flat_hash_set"],
+    deps = [
+        "//common",
+        "@abseil-cpp//absl/container:flat_hash_set",
+    ],
 )
