@@ -45,7 +45,10 @@ std::vector<std::string> split(const std::string &s,
   std::vector<std::string> tokens;
   while ((next = s.find(delimiter, last)) != std::string::npos) {
     // Get the next n characters, starting from position last.
-    tokens.emplace_back(s.substr(last, next - last));
+    std::string token = s.substr(last, next - last);
+    if (!token.empty()) {
+      tokens.push_back(token);
+    }
     last = next + delimiter.size();
   }
 
@@ -54,7 +57,10 @@ std::vector<std::string> split(const std::string &s,
   // delimiter -- there is no "," following 'c', so string.find() will return
   // npos after finding the second comma. Last will hold the starting index of
   // the last token, so we just take the substring from last to the end.
-  tokens.emplace_back(s.substr(last));
+  std::string token = s.substr(last);
+  if (!token.empty()) {
+    tokens.push_back(token);
+  }
   return tokens;
 }
 
